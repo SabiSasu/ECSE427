@@ -9,22 +9,26 @@
 #include <string.h>
 
 int main(){
-	char prompt[100] = {'$', '\0'};  //can be modified
-	char userInput[1000];            //user input stored here
-	int errorCode = 0;               //0 means no error, default
+	char prompt[100] = {'$', '\0'};
+	char userInput[1000];
+	int errorCode = 0;
 	char name[30] = "Sabina";
 	printf("Welcome to the %s shell! \n", name);
 	printf("Version 1.0 Created January 2020\n");
 	while(1) {
 		printf("%s", prompt);
 		fgets(userInput, 999, stdin); //limit input to size array
-
+		printf("\n");
 		errorCode = parse(userInput);
 
 		if(errorCode == -1)
 			exit(99); //ignore all other errors
 		else if(errorCode == 1)
 			printf("Unknown command\n");
+		else if(errorCode == 2)
+			printf("Variable does not exist\n");
+		else if(errorCode == 3)
+			printf("Script not found\n");
 
 	}
 
@@ -36,16 +40,23 @@ int parse(char input[]){
 	int a;
 	for(a=0; input[a]==' ' && a<1000; a++); //skip first white spaces
 
+	int w = 0;
 	while(input[a] != '\0' && a<1000) {
-		int b, w = 0;
-		for(b=0; input[a]!='\0' && input[a]!=' ' && a<1000; a++, b++)
-			tmp[b] = input[a]; //extract a word
+		int b = 0;
 
+		for(b=0; input[a]!='\0' && input[a]!=' ' && a<1000; a++, b++){
+			//removing the line return
+			if(input[a] != '\n')
+				tmp[b] = input[a];
+			else
+				break;
+		}
 		tmp[b] = '\0';
 		words[w] = strdup(tmp); //using stringdup to copy string
-		a++; w++;
+		w++; a++;
 	}
-
+	words[w] = "/0";
+	int i = 0;
 	return interpreter(words); //assumes cmd switches args
 
 

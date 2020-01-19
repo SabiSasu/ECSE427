@@ -14,43 +14,52 @@ struct Student{
 	char name[30];
 	int age;
 	double gpa;
-}*array;
+	struct Student *next;
+}*head = NULL;
+
+
+void push(char name[], int age, double gpa){
+	struct Student* temp = (struct Student*)malloc(sizeof(struct Student));
+	strcpy(temp.name, name);
+	temp.age = age;
+	temp.gpa = gpa;
+	temp.next = head;
+	head = temp;
+}
+
+struct Student* pop(){
+	struct Student* temp = head;
+	//new head is next element
+	head = temp.next;
+	//return popped element
+	return temp;
+
+}
 
 int main()
 {
-	int size;
-	printf("Enter an array size: ");
-	scanf("%d", &size);
-	array = malloc(size * sizeof(*array));
-	int m = (int)sizeof(*array);
-	printf("%d", m);
+	char userInput[1000] = "y";            //user input stored here
 
-	// if memory cannot be allocated
-	if(array == NULL)
-	{
-		printf("Error! memory not allocated.");
-		exit(0);
+	do{
+		char name[30];
+		int age;
+		double gpa;
+		printf("Enter a name, age and gpa: ");
+		scanf("%s%d%lf", name, &age, &gpa);
+		push(name, age, gpa);
+
+		printf("Press y to keep adding students: ");
+		fgets(userInput, 1, stdin);
+	}while((strcmp(userInput, "y") == 0 || strcmp(userInput, "Y") == 0 ));
+
+
+	printf("Your students are:\n");
+	while(head != NULL){
+		struct Student* temp = pop();
+		printf("%s, %d, %lf\n", temp.name, temp.age, temp.gpa);
+		free(temp);
 	}
 
-	int n = 0;
-	printf("Enter a cell number between %d-%d: ", 0, size-1);
-	scanf("%d", &n);
-	if(n < 0 || n >  size-1)
-	{
-		printf("Number must be between bounds, program aborted");
-		exit(0);
-	}
 
-	char name[30];
-	int age;
-	double gpa;
-	printf("Enter a name, age and gpa: ");
-	scanf("%s%d%lf", name, &age, &gpa);
-	strcpy(array[n].name, name);
-	array[n].age = age;
-	array[n].gpa = gpa;
-	printf("New entry saved: ");
-	printf("%s, %d, %lf", array[n].name, array[n].age, array[n].gpa);
-	free(array);
 
 }

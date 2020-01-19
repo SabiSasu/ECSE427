@@ -22,8 +22,6 @@ int main()
 	printf("Enter an array size: ");
 	scanf("%d", &size);
 	array = malloc(size * sizeof(*array));
-	int m = (int)sizeof(*array);
-	printf("%d", m);
 
 	// if memory cannot be allocated
 	if(array == NULL)
