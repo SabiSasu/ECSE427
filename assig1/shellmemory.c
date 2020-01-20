@@ -116,6 +116,33 @@ int print(char *words[]){
 
 int run(char *words[]){
 	int errcode = 0;
+	int check = checkArray(1, words);
+	//numbers dont match, put error code
+	if(check == 0){
+		errcode = 1;
+	}
+	else{
+		char fInput[1000];
+		FILE *f = fopen(words[1], "r");
+		//only read file if could open succesfully
+		if(f != NULL){
+			//reading lines
+			fgets(fInput, 999, f);
+			while(!feof(f)) {
+				errcode = parse(fInput); //which calls interpreter()
+				if (errcode != 0) {
+					fclose(f);
+					return errcode;
+				}
+				fgets(fInput, 999, f);
+			}
+
+			fclose(f);
+		}
+		else{
+			errcode = 3;
+		}
+	}
 	//return error msh if cant open file
 	return errcode;
 }
