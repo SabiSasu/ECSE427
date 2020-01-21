@@ -129,8 +129,9 @@ int run(char *words[]){
 			//reading lines
 			fgets(fInput, 999, f);
 			while(!feof(f)) {
+				printf("%s\n", fInput);
 				errcode = parse(fInput); //which calls interpreter()
-				if (errcode != 0) {
+				if (errcode < 0) {
 					fclose(f);
 					return errcode;
 				}
