@@ -1,9 +1,4 @@
-/*
- * shellmemory.c
- *
- *  Created on: Jan 16, 2020
- *      Author: Bubble
- */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,30 +52,41 @@ int checkArray(int m, char *words[]){
 }
 
 int help(char *words[]){
-	printf("%-20s%s\n", "COMMAND", "DESCRIPTION");
-	printf("%-20s%s\n", "help", "Displays all the commands");
-	printf("%-20s%s\n", "quit", "Exits / terminates the shell with ""Bye!""");
-	printf("%-20s%s\n", "set VAR STRING", "Assigns a value to shell memory");
-	printf("%-20s%s\n", "print VAR", "Displays the STRING assigned to VAR");
-	printf("%-20s%s\n", "run SCRIPT.TXT", "Executes the file SCRIPT.TXT ");
-	printf("\n");
-	return 0;
+	int errcode = 0;
+	int check = checkArray(0, words);
+	if(check == 0){
+		errcode = 1;
+	}
+	else{
+		printf("%-20s%s\n", "COMMAND", "DESCRIPTION");
+		printf("%-20s%s\n", "help", "Displays all the commands");
+		printf("%-20s%s\n", "quit", "Exits / terminates the shell with ""Bye!""");
+		printf("%-20s%s\n", "set VAR STRING", "Assigns a value to shell memory");
+		printf("%-20s%s\n", "print VAR", "Displays the STRING assigned to VAR");
+		printf("%-20s%s\n", "run SCRIPT.TXT", "Executes the file SCRIPT.TXT ");
+		printf("\n");
+	}
+	return errcode;
 }
 
 int quit(char *words[]){
-	printf("Bye!");
-	exit(99);
-	return 0;
+	int errcode = 0;
+	int check = checkArray(0, words);
+	if(check == 0){
+		errcode = 1;
+	}
+	else{
+		printf("Bye!\n");
+		errcode = -1;
+	}
+	return errcode;
 }
 
 int set(char *words[]){
 	int errcode = 0;
-
-	//check if words[1] and words[2] exist
 	int check = checkArray(2, words);
-	//numbers dont match, put error code
 	if(check == 0){
-		errcode = 2;
+		errcode = 1;
 	}
 	else{
 		//checks to see if variable exist
@@ -89,19 +95,16 @@ int set(char *words[]){
 			errcode = add(words[1], words[2]);
 		}
 	}
-	//otherwise returns error code 2
 	return errcode;
 }
 
 int print(char *words[]){
 	int errcode = 0;
 	int check = checkArray(1, words);
-	//numbers dont match, put error code
 	if(check == 0){
 		errcode = 1;
 	}
 	else{
-		//checks to see if variable exist
 		char * value = getVar(words[1]);
 		if(strcmp(value, "\0") != 0){
 			printf("%s=%s\n", words[1], value);
@@ -110,14 +113,12 @@ int print(char *words[]){
 			errcode = 2;
 		}
 	}
-	//otherwise returns error code 2
 	return errcode;
 }
 
 int run(char *words[]){
 	int errcode = 0;
 	int check = checkArray(1, words);
-	//numbers dont match, put error code
 	if(check == 0){
 		errcode = 1;
 	}
@@ -129,11 +130,9 @@ int run(char *words[]){
 			//reading lines
 			fgets(fInput, 999, f);
 			while(!feof(f)) {
-				printf("%s\n", fInput);
 				errcode = parse(fInput); //which calls interpreter()
 				if (errcode < 0) {
 					fclose(f);
-					return errcode;
 				}
 				fgets(fInput, 999, f);
 			}
@@ -147,5 +146,6 @@ int run(char *words[]){
 	//return error msh if cant open file
 	return errcode;
 }
+
 
 

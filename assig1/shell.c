@@ -1,9 +1,4 @@
-/*
- * shell.c
- *
- *  Created on: Jan 16, 2020
- *      Author: Bubble
- */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -61,3 +56,4 @@ int parse(char input[]){
 
 
 }
+

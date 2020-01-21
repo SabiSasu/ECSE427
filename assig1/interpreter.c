@@ -1,9 +1,3 @@
-/*
- * interpreter.c
- *
- *  Created on: Jan 16, 2020
- *      Author: Bubble
- */
 
 int interpreter(char *words[]) { //assumes cmd switches args
    int errCode = 0;              //assumes words[0] is cmd
@@ -23,4 +17,5 @@ int interpreter(char *words[]) { //assumes cmd switches args
 
    return errCode;
 }
+
 

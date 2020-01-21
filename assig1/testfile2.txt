@@ -9,6 +9,6 @@ print x
 print y
 print z
 print bobbie
-run testfile.txt
+run testfile3.txt
 quit
  
