@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "shell.h"
 
 struct MEM {
 	char *var;
@@ -130,9 +131,12 @@ int run(char *words[]){
 			//reading lines
 			fgets(fInput, 999, f);
 			while(!feof(f)) {
+				//printf("\n");
 				errcode = parse(fInput); //which calls interpreter()
+
 				if (errcode < 0) {
 					fclose(f);
+					break;
 				}
 				fgets(fInput, 999, f);
 			}
@@ -146,6 +150,5 @@ int run(char *words[]){
 	//return error msh if cant open file
 	return errcode;
 }
-
 
 

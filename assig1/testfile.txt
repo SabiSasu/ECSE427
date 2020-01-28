@@ -9,6 +9,4 @@ print x
 print y
 print z
 print bobbie
-run testfile.txt
 quit
- 

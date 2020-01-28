@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "interpreter.h"
+#include "shell.h"
+#include "shellmemory.h"
 
 int main(){
 	char prompt[100] = {'$', '\0'};
@@ -13,11 +16,10 @@ int main(){
 	while(1) {
 		printf("%s", prompt);
 		fgets(userInput, 999, stdin); //limit input to size array
-		printf("\n");
 		errorCode = parse(userInput);
 
 		if(errorCode == -1)
-			exit(99); //ignore all other errors
+			exit(99);
 		else if(errorCode == 1)
 			printf("Unknown command\n");
 		else if(errorCode == 2)
@@ -50,10 +52,10 @@ int parse(char input[]){
 		words[w] = strdup(tmp); //using stringdup to copy string
 		w++; a++;
 	}
+	//declaring end of words
 	words[w] = "/0";
 	int i = 0;
-	return interpreter(words); //assumes cmd switches args
+	return interpreter(words);
 
 
 }
-
