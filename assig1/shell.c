@@ -11,7 +11,7 @@ int main(){
 	char userInput[1000];
 	int errorCode = 0;
 	char name[30] = "Sabina";
-	printf("Welcome to the %s shell! \n", name);
+	printf("Welcome to the %s shell!!! \n", name);
 	printf("Version 1.0 Created January 2020\n");
 	while(1) {
 		printf("%s", prompt);

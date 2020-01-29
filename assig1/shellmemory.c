@@ -108,7 +108,7 @@ int print(char *words[]){
 	else{
 		char * value = getVar(words[1]);
 		if(strcmp(value, "\0") != 0){
-			printf("%s=%s\n", words[1], value);
+			printf("%s = %s\n", words[1], value);
 		}
 		else{
 			errcode = 2;
@@ -131,16 +131,14 @@ int run(char *words[]){
 			//reading lines
 			fgets(fInput, 999, f);
 			while(!feof(f)) {
-				//printf("\n");
 				errcode = parse(fInput); //which calls interpreter()
-
 				if (errcode < 0) {
 					fclose(f);
+					errcode = 0;
 					break;
 				}
 				fgets(fInput, 999, f);
 			}
-
 			fclose(f);
 		}
 		else{
