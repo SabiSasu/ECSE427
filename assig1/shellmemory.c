@@ -1,3 +1,5 @@
+/* Shell written by Sabina Sasu, 260803977*/
+/* ECSE427 Mcgill Winter 2020 */
 
 #include <stdio.h>
 #include <stdlib.h>
