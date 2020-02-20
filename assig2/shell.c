@@ -5,16 +5,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "interpreter.h"
-#include "shell.h"
 #include "shellmemory.h"
+#include "shell.h"
 
-int main(){
+int shellUI(){
 	char prompt[100] = {'$', '\0'};
 	char userInput[1000];
 	int errorCode = 0;
 	char name[30] = "Sabina";
+	shell_memory_initialize();
 	printf("Welcome to the %s shell! \n", name);
-	printf("Version 1.0 Created January 2020\n");
+	printf("Version 2.0 Updated February 2020\n");
 	while(1) {
 		printf("%s", prompt);
 		fgets(userInput, 999, stdin); //limit input to size array
@@ -28,9 +29,14 @@ int main(){
 			printf("Variable does not exist\n");
 		else if(errorCode == 3)
 			printf("Script not found\n");
-
+		else if(errorCode == 4)
+			printf("Wrong number of arguments\n");
+		else if(errorCode == 5)
+			printf("Script not found\n");
 	}
 
+	shell_memory_destory();
+	return 0;
 }
 
 int parse(char input[]){
@@ -50,9 +56,13 @@ int parse(char input[]){
 			else
 				break;
 		}
-		tmp[b] = '\0';
-		words[w] = strdup(tmp); //using stringdup to copy string
-		w++; a++;
+		//deals with trailing spaces
+		if(b > 0){
+			tmp[b] = '\0';
+			words[w] = strdup(tmp); //using stringdup to copy string
+			w++;
+		}
+		 a++;
 	}
 	//declaring end of words
 	words[w] = "/0";

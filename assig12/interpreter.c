@@ -13,7 +13,6 @@ int interpreter(char *words[]) {
    else if (strcmp(words[0], "set") == 0)    errCode = set(words);
    else if (strcmp(words[0], "print") == 0)  errCode = print(words);
    else if (strcmp(words[0], "run") == 0)    errCode = run(words);
-   else if (strcmp(words[0], "exec") == 0)   errCode = exec(words);
    else errCode = 1;
 
    return errCode;

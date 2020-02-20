@@ -1,0 +1,8 @@
+set y we_are_in_2
+print x
+print y
+print z
+help
+run testfile3.txt
+quit
+ 

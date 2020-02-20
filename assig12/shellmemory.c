@@ -151,8 +151,4 @@ int run(char *words[]){
 	return errcode;
 }
 
-int exec(char * words){
-
-}
-
 
