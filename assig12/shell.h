@@ -1,2 +1,0 @@
-
-int parse(char input[]);

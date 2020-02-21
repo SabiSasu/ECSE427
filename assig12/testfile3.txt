@@ -1,7 +1,0 @@
-help
-set x we_are_in_3
-set bobbie Montreal Canadians
-print x
-print y
-print z
-print bobbie
