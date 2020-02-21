@@ -19,19 +19,15 @@ struct RQNode *head, *tail;
 int main(){
 
 	printf("Kernel 1.0 loaded!\n");
-
-	/*
-
-	head.next -> tail;
-	tail.next -> head;
-	 */
-
 	shellUI();
 }
 
 // add the PCB to the tail of the Ready Queue
 void addToReady(struct PCB *new_pcb){
-	struct PCB new_p = *new_pcb;
+	int PC=new_pcb->PC;
+	int start = new_pcb->start;
+	int end = new_pcb->end;
+	struct PCB new_p = {PC, start, end};
 	struct RQNode *new;
 	printf("pcb created, %d, %d, %d\n", new_p.PC, new_p.start, new_p.end);
 	new = (struct RQNode*)malloc(sizeof(struct RQNode));
@@ -84,7 +80,9 @@ int myinit(char *filename) {
 
 		if(errcode != 4){
 			printf("added to ram, %d, %d\n", start, end);
-			addToReady(makePCB(start, end));
+			struct PCB * p= makePCB(start, end);
+			printf("pcb created3 %d, %d\n", p->PC, p->end);
+			addToReady(p);
 			printf("added to queue\n");
 		}
 	}
@@ -101,21 +99,6 @@ int scheduler(){
 	int quanta = 2;
 	int i = 0;
 	struct RQNode *t;
-	//t = head;
-
-	//pop from queue
-	//run in cpu
-	//update PC in pcb
-	//if PC>end, dont enqueue back
-	//ow enqueue back to ready queue
-
-	/*while (t->next != NULL) {
-		t = t->next;
-		i++;
-	}
-	i++;
-	*/
-
 	while(head != NULL){
 		printf("inside scheduler\n");
 		t = head;

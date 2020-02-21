@@ -16,6 +16,6 @@ struct PCB* makePCB(int start, int end){
 	struct PCB new = {start, start, end};
 	printf("pcb created2\n");
 	struct PCB *p2 = &new;
-	printf("pcb created3\n");
+	printf("pcb created3 %d, %d\n", p2->PC, p2->end);
 	return p2;
 }

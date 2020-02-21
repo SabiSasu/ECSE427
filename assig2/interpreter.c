@@ -165,11 +165,13 @@ int run(char *words[]){
 				errcode = parse(fInput); //which calls interpreter()
 				if (errcode < 0) {
 					fclose(f);
+f=NULL;
 					errcode = 0;
 					break;
 				}
 				fgets(fInput, 999, f);
 			}
+if(f!=NULL)
 			fclose(f);
 		}
 		else{
