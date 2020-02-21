@@ -7,6 +7,7 @@
 #include "shell.h"
 #include "ram.h"
 #include "pcb.h"
+#include "cpu.h"
 
 
 struct RQNode{
@@ -32,7 +33,7 @@ int main(){
 void addToReady(struct PCB *new_pcb){
 	struct PCB new_p = *new_pcb;
 	struct RQNode *new;
-	printf("pcb created, %d\n", new_p.end);
+	printf("pcb created, %d, %d, %d\n", new_p.PC, new_p.start, new_p.end);
 	new = (struct RQNode*)malloc(sizeof(struct RQNode));
 	new->pcb = new_p;
 	new->next=NULL;
@@ -97,15 +98,46 @@ int myinit(char *filename) {
 
 int scheduler(){
 	int errcode = 0;
-
+	int quanta = 2;
 	int i = 0;
 	struct RQNode *t;
-	t = head;
-	while (t->next != NULL) {
+	//t = head;
+
+	//pop from queue
+	//run in cpu
+	//update PC in pcb
+	//if PC>end, dont enqueue back
+	//ow enqueue back to ready queue
+
+	/*while (t->next != NULL) {
 		t = t->next;
 		i++;
 	}
 	i++;
+	*/
+
+	while(head != NULL){
+		printf("inside scheduler\n");
+		t = head;
+		head = t->next;
+		struct PCB p = t->pcb;
+		setIP(p.PC);
+		int q = quanta;
+		if(quanta > (p.end-p.PC)){
+			q = p.end-p.PC;
+		}
+		runCPU(q);
+		printf("finished running, now at %d\n", p.PC+q);
+		//update PC
+		p.PC = p.PC+q;
+
+		//don't enqueue
+		if(!(p.PC >= p.end)){
+			printf("adding to queue again\n");
+			addToReady((&p));
+		}
+
+	}
 
 	printf("%d, cleaning up\n", i);
 	cleanUpRAM();

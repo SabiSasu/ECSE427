@@ -7,6 +7,10 @@
 char *ram[1000];
 int m = 0;
 
+char* getRAM(int k){
+	return strdup(ram[k]);
+}
+
 void cleanUpRAM(){
 	for(int i = 0; i < m; i++){
 		ram[i] = NULL;

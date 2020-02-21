@@ -11,6 +11,7 @@
 #include "kernel.h"
 #include "ram.h"
 
+//checks if input has the correct amount of args
 int checkArray(int m, char *words[]){
 	int match = 0;
 	for(int i = 1; i <= m+1; i++){
@@ -26,6 +27,7 @@ int checkArray(int m, char *words[]){
 	return match;
 }
 
+//checks if name files are the same
 int checkFileName(char *words[], int n){
 	int err = 0;
 	switch(n){
