@@ -27,7 +27,7 @@ void runCPU(int quanta){
 		//retreive ram line
 		strcpy(getRAM(CPU.IP), CPU.IR);
 		//run the line
-		printf("Q: %d, %s, %s\n", CPU.quanta, getRAM(CPU.IP), CPU.IR);
+		//printf("Q: %d, %s, %s\n", CPU.quanta, getRAM(CPU.IP), CPU.IR);
 		errcode = parse(getRAM(CPU.IP));
 		CPU.IP++;
 		CPU.quanta--;

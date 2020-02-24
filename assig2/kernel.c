@@ -29,7 +29,7 @@ void addToReady(struct PCB *new_pcb){
 	int end = new_pcb->end;
 	struct PCB new_p = {PC, start, end};
 	struct RQNode *new;
-	printf("pcb created, %d, %d, %d\n", new_p.PC, new_p.start, new_p.end);
+	//printf("pcb created, %d, %d, %d\n", new_p.PC, new_p.start, new_p.end);
 	new = (struct RQNode*)malloc(sizeof(struct RQNode));
 	new->pcb = new_p;
 	new->next=NULL;
@@ -67,6 +67,11 @@ void printQueue(){
 	printf("%d, %d, %d\n", i, t->pcb.start, t->pcb.end); // Print last node
 }
 
+void resetReadyQueue(){
+	head = NULL;
+	tail = NULL;
+}
+
 int myinit(char *filename) {
 	int errcode = 0;
 
@@ -79,16 +84,18 @@ int myinit(char *filename) {
 		errcode = addToRAM(f, &start, &end);
 
 		if(errcode != 4){
-			printf("added to ram, %d, %d\n", start, end);
+			//printf("added to ram, %d, %d\n", start, end);
 			struct PCB * p= makePCB(start, end);
-			printf("pcb created3 %d, %d\n", p->PC, p->end);
+			//printf("pcb created3 %d, %d\n", p->PC, p->end);
 			addToReady(p);
-			printf("added to queue\n");
+			//printf("added to queue\n");
 		}
 	}
 	else{
 		printf("File %s does not exist\n", filename);
 		errcode = 4;
+		cleanUpRAM();
+		resetReadyQueue();
 	}
 	return errcode;
 }
@@ -100,7 +107,7 @@ int scheduler(){
 	int i = 0;
 	struct RQNode *t;
 	while(head != NULL){
-		printf("inside scheduler\n");
+		//printf("inside scheduler\n");
 		t = head;
 		head = t->next;
 		struct PCB p = t->pcb;
@@ -110,19 +117,19 @@ int scheduler(){
 			q = p.end-p.PC;
 		}
 		runCPU(q);
-		printf("finished running, now at %d\n", p.PC+q);
+		//printf("finished running, now at %d\n", p.PC+q);
 		//update PC
 		p.PC = p.PC+q;
 
 		//don't enqueue
 		if(!(p.PC >= p.end)){
-			printf("adding to queue again\n");
+			//printf("adding to queue again\n");
 			addToReady((&p));
 		}
 
 	}
 
-	printf("%d, cleaning up\n", i);
+	//printf("%d, cleaning up\n", i);
 	cleanUpRAM();
 	head = NULL;
 	tail = NULL;

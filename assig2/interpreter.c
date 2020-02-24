@@ -65,7 +65,6 @@ int exec(char * words[]){
 	}
 	else{
 		int errcode = checkFileName(words, n);
-		printf("%d, %d\n", errcode, n);
 		//returns errcode 4 of file name appears more than once
 		int i = 1;
 		while(errcode != 4 && i <= n){
@@ -74,9 +73,12 @@ int exec(char * words[]){
 			i++;
 		}
 		if(errcode != 4){
-			printQueue();
-			printRAM();
+			//printQueue();
+			//printRAM();
 			int a = scheduler();
+		}
+		else{
+
 		}
 	}
 	return errcode;

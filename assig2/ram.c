@@ -1,4 +1,4 @@
-/* Kernel written by Sabina Sasu, 260803977*/
+	/* Kernel written by Sabina Sasu, 260803977*/
 /* ECSE427 Mcgill Winter 2020 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -46,7 +46,7 @@ int addToRAM(FILE *p, int *start, int *end){
 	fclose(p);
 	int * m2 = &m;
 	*end = *m2;
-	printf("Start %d, End %d, m %d\n", *start, *end, m);
+	//printf("Start %d, End %d, m %d\n", *start, *end, m);
 	return 0;
 }
 

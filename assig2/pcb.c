@@ -12,10 +12,8 @@
 
 //create a PCB instance using malloc
 struct PCB* makePCB(int start, int end){
-	printf("pcb created1\n");
 	struct PCB new = {start, start, end};
-	printf("pcb created2\n");
 	struct PCB *p2 = &new;
-	printf("pcb created3 %d, %d\n", p2->PC, p2->end);
+	//printf("pcb created3 %d, %d\n", p2->PC, p2->end);
 	return p2;
 }
