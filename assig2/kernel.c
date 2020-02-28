@@ -90,6 +90,10 @@ int myinit(char *filename) {
 			addToReady(p);
 			//printf("added to queue\n");
 		}
+		else{
+			cleanUpRAM();
+			resetReadyQueue();
+		}
 	}
 	else{
 		printf("File %s does not exist\n", filename);
