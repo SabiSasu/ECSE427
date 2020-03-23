@@ -24,16 +24,15 @@ void boot(){
 	initiateRAM();
 	
 	//delete directory if it exists (to avoid error messages)
-	DIR* dir = opendir("BackingStore");
-	if (dir) {
-   		system("rmdir BackingStore");
-	}
+	//DIR* dir = opendir("BackingStore");
+	//if (dir) {
+   		system("rm -r BackingStore");
+	//}
 	//create a new directory
    	system("mkdir BackingStore");
 }
 
 int kernel(){
-
 	printf("Kernel 2.0 loaded!\n");
 	shellUI();
 }
@@ -108,19 +107,20 @@ int myinit(char *filename) {
 	    int launch = launcher(f);
 	    //add to RAM is launched successfully
 	    if(launch == 1){
-		errcode = addToRAM(f, &start, &end);
+		/*errcode = addToRAM(f, &start, &end);
 
 		    if(errcode != 4){
 			    //printf("added to ram, %d, %d\n", start, end);
 			    struct PCB * p= makePCB(start, end);
 			    //printf("pcb created3 %d, %d\n", p->PC, p->end);
-			    addToReady(p);
+			    */
+			    //addToReady(p);
 			    //printf("added to queue\n");
-		    }
+		    /*}
 		    else{
 			    cleanUpRAM();
 			    resetReadyQueue();
-		    }
+		    }*/
 		}
 		else{
 		    printf("Could not launch program, aborting\n");
@@ -137,7 +137,6 @@ int myinit(char *filename) {
 	}
 	return errcode;
 }
-
 
 int scheduler(){
 	int errcode = 0;

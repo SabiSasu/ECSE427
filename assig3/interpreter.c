@@ -10,6 +10,7 @@
 #include "pcb.h"
 #include "kernel.h"
 #include "ram.h"
+#include "memorymanager.h"
 
 
 //checks if input has the correct amount of args
@@ -65,8 +66,8 @@ int exec(char * words[]){
 		errcode = 4;
 	}
 	else{
-		int errcode = checkFileName(words, n);
-		//returns errcode 4 of file name appears more than once
+		//int errcode = checkFileName(words, n);
+		//returns errcode 4 of file name appears more than once (assig2 only)
 		int i = 1;
 		while(errcode != 4 && i <= n){
 			//open all the files

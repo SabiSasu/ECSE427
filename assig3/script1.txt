@@ -1,0 +1,1061 @@
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+set x 10
+print x
+help
+quit
+quit
+quit
+
+quit

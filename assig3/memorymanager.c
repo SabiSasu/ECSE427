@@ -5,6 +5,7 @@
 #include "ram.h"
 #include "pcb.h"
 #include "kernel.h"
+
 int pageSize = 4;
 static int m = 1;
 
@@ -14,10 +15,18 @@ int findFrame() {
 }
 
 int findVictim(struct PCB *p){
-    return 0;
+    int randomnumber = rand() % 10;
+    printf("%d\n", randomnumber);
+    //check that the frame is in pcb, otherwise pick another number
+    //if()
+    
+    //if all good, clear the frame
+    clearFrame(randomnumber);
+    return randomnumber;
 }
 
 int updatePageTable(struct PCB *p, int pageNumber, int frameNumber, int victimFrame){
+    p->pageTable[pageNumber] = frameNumber;
     return 0;
 }
 
@@ -27,7 +36,6 @@ void loadPage(int pageNumber, FILE *f, int frameNumber){
     char fInput[1000];
 	fgets(fInput, 999, f);
 	while(!feof(f)){
-	  
 	  lines++;
 	  //line is within page, add to ram
 	  if(lines <= thresh && lines >= thresh-pageSize){
@@ -86,16 +94,30 @@ int launcher(FILE *p){
 	printf("Numb Pages: %d\n", countPages);
 	rewind(backFile);
 	
-	//5.b. Load only 2 pages of it
+	//create pcb
+	//struct PCB new = malloc (sizeof (struct Vector));
+	struct PCB *this = malloc (sizeof (struct PCB));
+	this->pages_max=countPages;
 	
-	/*
-	loadPage(3, p, 1);
-	printAllRAM();
-	int a = findFrame();
-	printf("next frame: %d\n", a);
-	if(a==-1){
-	    //findVictim();
+	//5.b. Load only 2 pages of it
+	for(int a = 1; a <= countPages; a++){
+	    //5.c. Get frame
+	    int frame = findFrame();
+	    int victimFrame = -1;
+	    printf("next frame: %d\n", frame);
+	    //5.d. Get victim frame if get frame fails
+	    if(frame==-1){
+	        victimFrame = findVictim(this);
+	    }
+	    loadPage(a, backFile, frame);
+	    rewind(backFile);
+	    //5.e. update page table
+	    updatePageTable(this, a, frame, victimFrame);
+	    
 	}
-	*/
+	//addToReady(p2);?
+	
+	printAllRAM();
+	
 	return err;
 }

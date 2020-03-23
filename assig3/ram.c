@@ -7,7 +7,8 @@
 char *ram[40];
 int m = 0;
 int RAMsize = 40;
-int page = 4;
+int frameSize = 4;
+//frames are 4 spaces large and can contain 1 code page
 
 char* getRAM(int k){
 	return strdup(ram[k]);
@@ -41,9 +42,9 @@ void printAllRAM(){
 }
 
 void loadPageRAM(int frame, char *fInput){
-	int f = frame*page;
+	int f = frame*frameSize;
 	printf("Loading: %s\n", fInput);	
-	for(int i = f-page; i < f; i++){
+	for(int i = f-frameSize; i < f; i++){
 		if(ram[i] == NULL){
 			ram[i] = strdup(fInput);
 			break;
@@ -51,9 +52,16 @@ void loadPageRAM(int frame, char *fInput){
 	}
 }
 
+void clearFrame(int frame){
+    int f = frame*frameSize;
+    for(int a = f-frameSize; a < f; a++){
+        ram[a] = NULL;
+    }
+}
+
 int getNextFrame(){
-	for(int i = 0; i < RAMsize/page; i++){
-		if(ram[i*page] == NULL){
+	for(int i = 0; i < RAMsize/frameSize; i++){
+		if(ram[i*frameSize] == NULL){
 			return i+1;
 		}
 	}

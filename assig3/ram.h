@@ -8,3 +8,4 @@ void cleanUpRAM();
 void printRAM();
 void printAllRAM();
 int getNextFrame();
+void clearFrame(int frame);
