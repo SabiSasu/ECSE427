@@ -6,6 +6,7 @@ struct PCB {
 	int PC_page;
 	int PC_offset;
 	int pages_max;
+	char fileName [1000];
 };
 
 struct PCB* makePCB(int start, int end);

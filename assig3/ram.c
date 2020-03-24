@@ -11,16 +11,21 @@ int frameSize = 4;
 //frames are 4 spaces large and can contain 1 code page
 
 char* getRAM(int k){
-	return strdup(ram[k]);
+	if(ram[k] != NULL)
+		return strdup(ram[k]);
+	
+	return NULL;
 }
 
 void initiateRAM(){
+	printf("initiate ram\n");
 	for(int i = 0; i < RAMsize; i++){
 		ram[i] = NULL;
 	}
 }
 
 void cleanUpRAM(){
+	printf("cleaning ram\n");
 	for(int i = 0; i < m; i++){
 		ram[i] = NULL;
 	}
@@ -44,7 +49,7 @@ void printAllRAM(){
 void loadPageRAM(int frame, char *fInput){
 	int f = frame*frameSize;
 	printf("Loading: %s\n", fInput);	
-	for(int i = f-frameSize; i < f; i++){
+	for(int i = f; i < f+frameSize; i++){
 		if(ram[i] == NULL){
 			ram[i] = strdup(fInput);
 			break;
@@ -53,8 +58,9 @@ void loadPageRAM(int frame, char *fInput){
 }
 
 void clearFrame(int frame){
+	printf("cleaning frame\n");
     int f = frame*frameSize;
-    for(int a = f-frameSize; a < f; a++){
+    for(int a = f; a < f+frameSize; a++){
         ram[a] = NULL;
     }
 }
@@ -62,7 +68,7 @@ void clearFrame(int frame){
 int getNextFrame(){
 	for(int i = 0; i < RAMsize/frameSize; i++){
 		if(ram[i*frameSize] == NULL){
-			return i+1;
+			return i;
 		}
 	}
 	return -1;

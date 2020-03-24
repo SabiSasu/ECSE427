@@ -1,4 +1,4 @@
 
-void setIP(int a);
+void setIP(int a, int offset);
 
-void runCPU(int quanta);
+int runCPU(int quanta);
