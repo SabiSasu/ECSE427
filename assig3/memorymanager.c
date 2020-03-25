@@ -1,3 +1,6 @@
+/* memorymanager.c written by Sabina Sasu, 260803977*/
+/* ECSE427 Mcgill Winter 2020 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -111,7 +114,8 @@ int launcher(FILE *p){
 	rewind(backFile);
 	if(countPages > 10){
 	    printf("Cannot launch a program with %d pages\n", countPages);
-	    return 0;
+	    int i = remove(fileName);
+	    return i;
 	}
 	
 	//create pcb

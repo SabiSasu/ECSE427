@@ -1,4 +1,4 @@
-/* Shell written by Sabina Sasu, 260803977*/
+/* kernel.cp written by Sabina Sasu, 260803977*/
 /* ECSE427 Mcgill Winter 2020 */
 
 #include <stdio.h>
@@ -12,12 +12,17 @@
 #include "cpu.h"
 #include "memorymanager.h"
 
-int lock() 
+
+static int lock = 0; 
+int getLock() 
 { 
-  static int lock = 0; 
-  lock++; 
+  lock++;
   return lock; 
 } 
+
+void resetLock(){
+    lock = 0;
+}
 
 struct RQNode{
 	struct PCB pcb;
@@ -98,6 +103,26 @@ void resetReadyQueue(){
 	tail = NULL;
 }
 
+int checkPCBFiles(char * name){
+	int a = -1;
+	struct RQNode *t;
+	t = head;
+
+	if (t == NULL) {
+		printf("Linked list is empty.\n");
+		return a;
+	}
+	while (t->next != NULL) {
+		a = strcmp(t->pcb.fileName, name);
+		if(a == 0)
+		    return a;
+		t = t->next;
+
+	}
+	a = strcmp(t->pcb.fileName, name); // Print last node
+	return a;
+}
+
 int myinit(char *filename) {
 	int errcode = 0;
 
@@ -115,22 +140,20 @@ int myinit(char *filename) {
 		}
 		else{
 		    printf("Could not launch program, aborting\n");
-		    errcode = 4;
+		    errcode = -4;
 		    //initiateRAM();
 		    //resetReadyQueue();
 		}
 	}
 	else{
 		printf("File %s does not exist\n", filename);
-		errcode = 4;
-		initiateRAM();
-		resetReadyQueue();
+		errcode = -4;
 	}
 	return errcode;
 }
 
 int scheduler(){
-    int lockID = lock();
+    int lockID = getLock();
 	int errcode = 0;
 	int quanta = 2;
 	int i = 0;
@@ -144,16 +167,15 @@ int scheduler(){
 		setIP(p.PC, p.PC_offset);
 		int q = quanta;
 		int interr = runCPU(q);
-		printf("finished running, now at %d, error %d\n", p.PC+q, interr);
+		printf("Finished running, now at %d, error %d\n", p.PC+p.PC_offset, interr);
 	    
-	    //check if "quit" command was called, dont enqueue if so
+	    //check if "quit" command was called, dont enqueue
 		if(interr == -1){
 		    enqueue = 0;
 		    printf("quit command, done, lock id = %d\n", lockID);
-		    break;
 		 }
 		 //check wheter interrupt was triggered or not
-		if(interr == 1){
+		else if(interr == 1){
 		    p.PC_page++;
 		    if(p.PC_page > p.pages_max)//last page, dont enqueue
 		        enqueue=0;
@@ -168,7 +190,7 @@ int scheduler(){
 		            FILE * backFile = fopen(p.fileName, "r");
 		            int frame = findFrame();
 	                int victimFrame = -1;
-	               // printf("next frame: %d, page: %d\n", frame, a);
+	                printf("found frame: %d, victim: %d\n", frame, victimFrame);
 	                if(frame==-1){
 	                    victimFrame = findVictim(&p);
 	                    loadPage(p.PC_page-1, backFile, victimFrame);
@@ -200,6 +222,15 @@ int scheduler(){
 			printf("adding to queue again\n");
 			addToReady((&p));
 		}
+		else{
+		    //delete file if a pcb in queue does not have the same file
+		    int i = checkPCBFiles(p.fileName);
+		    if(i != 0){
+		        i = remove(p.fileName);
+		        printf("Program terminated, deleting file %s\n", p.fileName);
+		    }
+		    printQueue();
+		}
 
 	}
     if(lockID == 1){
@@ -207,7 +238,9 @@ int scheduler(){
 	    initiateRAM();
 	    head = NULL;
 	    tail = NULL;
+	    resetLock(); //resetting lock
 	    //at the end, free stuff
+	    
     }
     printf("sched done, errcode = %d\n", i);
 	return errcode;

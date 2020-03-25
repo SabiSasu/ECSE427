@@ -1,4 +1,4 @@
-/* Shell written by Sabina Sasu, 260803977*/
+/* interpreter.c written by Sabina Sasu, 260803977*/
 /* ECSE427 Mcgill Winter 2020 */
 
 #include <string.h>
@@ -75,7 +75,7 @@ int exec(char * words[]){
 			i++;
 			
 		}
-		if(errcode != 4){
+		if(errcode != 4 && errcode != -4){
 			printQueue();
 			printAllRAM();
 			int a = scheduler();
