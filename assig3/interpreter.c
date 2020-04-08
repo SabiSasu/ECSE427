@@ -76,8 +76,8 @@ int exec(char * words[]){
 			
 		}
 		if(errcode != 4 && errcode != -4){
-			printQueue();
-			printAllRAM();
+			//printQueue();
+			//printAllRAM();
 			int a = scheduler();
 		}
 	}

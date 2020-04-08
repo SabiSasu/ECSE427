@@ -18,11 +18,10 @@ int findFrame() {
 
 int findVictim(struct PCB *p){
     int randomnumber = rand() % 10;
-    printf("%d\n", randomnumber);
     //iterate pcb page table
     for(int i = 0; i < p->pages_max; i++){
        //if the frame exists in the pagetable, get next number and reset loop
-        if(p->pageTable[i] == randomnumber){
+        if(p->pageTable[i] == randomnumber || randomnumber == lockedFrame){
             if (randomnumber < 9)
                 randomnumber++;
             else
@@ -73,7 +72,6 @@ int countTotalPages(FILE *f){
 	   lines++;
 	   fgets(fInput, 999, f);
 	}
-	printf("Numb Lines: %d\n", lines);
 	int a = (lines + pageSize - 1) / pageSize; 
 	return a;
 }
@@ -110,10 +108,9 @@ int launcher(FILE *p){
 	
 	//4.a.get total pages
 	int countPages = countTotalPages(backFile);
-	printf("Numb Pages: %d\n", countPages);
 	rewind(backFile);
 	if(countPages > 10){
-	    printf("Cannot launch a program with %d pages\n", countPages);
+	    printf("Cannot launch a program with %d pages\n, aborting...", countPages);
 	    int i = remove(fileName);
 	    return i;
 	}
@@ -127,15 +124,13 @@ int launcher(FILE *p){
 	this->PC_page=0;
 	//this->pageTable[0] = malloc(sizeof(int) * 10);
 	for(int i = 0; i < countPages; i++)
-	    this->pageTable[i] = NULL;
-	printf("%s\n", this->fileName);
+	    this->pageTable[i] = 0;
 	
 	//5.b. Load only 2 pages of it
 	for(int a = 0; a < countPages && a < 2; a++){
 	    //5.c. Get frame
 	    int frame = findFrame();
 	    int victimFrame = -1;
-	    printf("next frame: %d, page: %d\n", frame, a);
 	    //5.d. Get victim frame if get frame fails
 	    if(frame==-1){
 	        victimFrame = findVictim(this);
@@ -155,8 +150,7 @@ int launcher(FILE *p){
 	
 	//add to ready queue 
 	addToReady(this);
-	printf("\n");
-	printAllRAM();
+	//printAllRAM();
 	fclose(backFile);
 	return err;
 }

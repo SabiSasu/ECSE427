@@ -6,10 +6,21 @@ set bobbie Montreal Canadians
 print mary
 print tom
 print bob
-print bobbie
+print mary
+print mary
+print mary
+print bomarybbie
+print mary
+print mary
 exec script1.txt
+print mary
+print mary
 exec script2.txt script2.txt script3.txt
+print mary
+print mary
 exec unknown.txt
+print mary
+print mary
 exec script2.txt script3.txt
 run script3.txt
 quit

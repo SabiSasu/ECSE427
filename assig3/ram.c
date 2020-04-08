@@ -3,11 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "ram.h"
 
 char *ram[40];
 int m = 0;
 int RAMsize = 40;
 int frameSize = 4;
+
 //frames are 4 spaces large and can contain 1 code page
 
 char* getRAM(int k){
@@ -18,14 +20,13 @@ char* getRAM(int k){
 }
 
 void initiateRAM(){
-	printf("initiate ram\n");
 	for(int i = 0; i < RAMsize; i++){
 		ram[i] = NULL;
 	}
+	lockedFrame = -1;
 }
 
 void cleanUpRAM(){
-	printf("cleaning ram\n");
 	for(int i = 0; i < m; i++){
 		ram[i] = NULL;
 	}
@@ -47,8 +48,7 @@ void printAllRAM(){
 }
 
 void loadPageRAM(int frame, char *fInput){
-	int f = frame*frameSize;
-	printf("Loading: %s\n", fInput);	
+	int f = frame*frameSize;	
 	for(int i = f; i < f+frameSize; i++){
 		if(ram[i] == NULL){
 			ram[i] = strdup(fInput);
@@ -58,7 +58,6 @@ void loadPageRAM(int frame, char *fInput){
 }
 
 void clearFrame(int frame){
-	printf("cleaning frame\n");
     int f = frame*frameSize;
     for(int a = f; a < f+frameSize; a++){
         ram[a] = NULL;

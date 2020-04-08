@@ -62,7 +62,7 @@ void addToReady(struct PCB *new_pcb){
 	new = (struct RQNode*)malloc(sizeof(struct RQNode));
 	new->pcb = *new_pcb;
 	new->next=NULL;
-	printf("PCB added: PC %d, offset %d, page %d\n", new->pcb.PC, new->pcb.PC_offset, new->pcb.PC_page);
+	//printf("PCB added: PC %d, offset %d, page %d\n", new->pcb.PC, new->pcb.PC_offset, new->pcb.PC_page);
 	if(head == NULL){
 		head = (struct RQNode*)malloc(sizeof(struct RQNode));
 		tail = (struct RQNode*)malloc(sizeof(struct RQNode));
@@ -79,7 +79,7 @@ void addToReady(struct PCB *new_pcb){
 }
 
 void printQueue(){
-printf("Printing PCB queue.\n");
+    printf("Printing PCB queue.\n");
 	int i = 0;
 	struct RQNode *t;
 
@@ -109,7 +109,7 @@ int checkPCBFiles(char * name){
 	t = head;
 
 	if (t == NULL) {
-		printf("Linked list is empty.\n");
+		//printf("Linked list is empty.\n");
 		return a;
 	}
 	while (t->next != NULL) {
@@ -135,14 +135,9 @@ int myinit(char *filename) {
 	if(f != NULL){
 	    int launch = launcher(f);
 	    //launching adds to ram, creates PCb and adds it to ready queue
-	    if(launch == 1){
-		    printf("lauching successful\n");
-		}
-		else{
+	    if(launch != 1){
 		    printf("Could not launch program, aborting\n");
 		    errcode = -4;
-		    //initiateRAM();
-		    //resetReadyQueue();
 		}
 	}
 	else{
@@ -155,24 +150,22 @@ int myinit(char *filename) {
 int scheduler(){
     int lockID = getLock();
 	int errcode = 0;
-	int quanta = 2;
+	int q = 2;
 	int i = 0;
 	int enqueue = 1;
 	struct RQNode *t;
+	
 	while(head != NULL){
-		printf("inside scheduler loop\n");
 		t = head;
 		head = t->next;
 		struct PCB p = t->pcb;
 		setIP(p.PC, p.PC_offset);
-		int q = quanta;
 		int interr = runCPU(q);
-		printf("Finished running, now at %d, error %d\n", p.PC+p.PC_offset, interr);
-	    
+		
 	    //check if "quit" command was called, dont enqueue
 		if(interr == -1){
 		    enqueue = 0;
-		    printf("quit command, done, lock id = %d\n", lockID);
+		    //printf("quit command, done, lock id = %d\n", lockID);
 		 }
 		 //check wheter interrupt was triggered or not
 		else if(interr == 1){
@@ -180,7 +173,7 @@ int scheduler(){
 		    if(p.PC_page > p.pages_max)//last page, dont enqueue
 		        enqueue=0;
 		    else{//not done, get next page and enqueue PCB
-		        if(p.pageTable[p.PC_page-1] != NULL){
+		        if((p.pageTable[p.PC_page-1]) != 0){
 		            p.PC = p.pageTable[p.PC_page-1]*4;
 		            p.PC_offset = 0;
 		            enqueue=1;
@@ -190,7 +183,7 @@ int scheduler(){
 		            FILE * backFile = fopen(p.fileName, "r");
 		            int frame = findFrame();
 	                int victimFrame = -1;
-	                printf("found frame: %d, victim: %d\n", frame, victimFrame);
+	              
 	                if(frame==-1){
 	                    victimFrame = findVictim(&p);
 	                    loadPage(p.PC_page-1, backFile, victimFrame);
@@ -213,13 +206,11 @@ int scheduler(){
 		//no interrupt, updatePC and offset, enqueue
 		else{
 		    p.PC_offset = p.PC_offset+q;
-		    //p.PC = p.PC+q;
 		    enqueue = 1;
 		}
 
 		//don't enqueue
 		if(enqueue == 1){
-			printf("adding to queue again\n");
 			addToReady((&p));
 		}
 		else{
@@ -227,22 +218,18 @@ int scheduler(){
 		    int i = checkPCBFiles(p.fileName);
 		    if(i != 0){
 		        i = remove(p.fileName);
-		        printf("Program terminated, deleting file %s\n", p.fileName);
 		    }
-		    printQueue();
+		    //printQueue();
 		}
 
 	}
     if(lockID == 1){
-	    printf("%d, cleaning up\n", i);
 	    initiateRAM();
 	    head = NULL;
 	    tail = NULL;
 	    resetLock(); //resetting lock
 	    //at the end, free stuff
-	    
     }
-    printf("sched done, errcode = %d\n", i);
 	return errcode;
 }
 
@@ -253,14 +240,12 @@ int updateVictimPageTable(int victimFrame){
 	t = head;
 
 	if (t == NULL) {
-		printf("Linked list is empty, no victim pcb\n");
 		return err;
 	}
 	while (t->next != NULL) {
 	    for(int i = 0; i < t->pcb.pages_max; i++){
         //if the frame exists in the pagetable, get next number and reset loop
             if(t->pcb.pageTable[i] == victimFrame){
-                printf("found victim pcb\n");
                 t->pcb.pageTable[i]=-1;
                 return err;
             }
@@ -272,7 +257,6 @@ int updateVictimPageTable(int victimFrame){
 	//last node
 	for(int i = 0; i < t->pcb.pages_max; i++){
             if(t->pcb.pageTable[i] == victimFrame){
-                printf("found victim pcb\n");
                 t->pcb.pageTable[i]=-1;
                 return err;
             }

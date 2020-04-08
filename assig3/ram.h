@@ -1,4 +1,4 @@
-extern char *ram[1000];
+//extern char *ram[40];
 
 char * getRAM(int k);
 void initiateRAM();
@@ -9,3 +9,4 @@ void printRAM();
 void printAllRAM();
 int getNextFrame();
 void clearFrame(int frame);
+static int lockedFrame = -1;
